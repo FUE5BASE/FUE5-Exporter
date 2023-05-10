@@ -1,4 +1,4 @@
-![FUE5](https://user-images.githubusercontent.com/127543827/235319284-d7505107-d0af-4275-a5be-f65301345823.jpg)
+![github2](https://github.com/FUE5BASE/FUE5-Exporter/assets/127543827/faad70d1-a383-4c18-8dbc-e8ab6a0f7cc0)
 
 # FUE5 Exporter
 Factorio mod relevant for [FUE5](https://github.com/FUE5BASE/FUE5). Adds shortcut to the game which puts selection tool to your cursor. 
