@@ -29,11 +29,15 @@ data:extend(
 		alt_selection_cursor_box_type = "entity",
 		entity_filter_mode = "blacklist",
 		entity_type_filters = {
-			"character"
+			"character",
+			"resource",
+			"spider-leg"
 		},
 		alt_entity_filter_mode = "blacklist",
 		alt_entity_type_filters = {
-			"character"
+			"character",
+			"resource",
+			"spider-leg"
 		}
 	}
 })

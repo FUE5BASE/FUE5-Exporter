@@ -1,0 +1,197 @@
+return {
+    ["$schema"] = "http://json-schema.org/draft-04/schema",
+    type = "object",
+    description = "Format of json exported from FUE5Exporter and imported in FUE5.",
+    properties = {
+      bounds = {
+        type = "object",
+        properties = {
+          ["x"] = {
+            type = "number"
+          },
+          ["y"] = {
+            type = "number"
+          },
+          width = {
+            type = "number"
+          },
+          height = {
+            type = "number"
+          }
+        },
+        required = { "x", "y", "width", "height" }
+      },
+      entities = {
+        type = "array",
+        items = {
+          type = "object",
+          properties = {
+            name = {
+              type = "string",
+              description = "Name of the entity from Factorio"
+            },
+            ["x"] = {
+              type = "number",
+              description = "X coordinate in Factorio grid"
+            },
+            ["y"] = {
+              type = "number",
+              description = "Y coordinate in Factorio grid"
+            },
+            direction = {
+              type = "integer",
+              description = "0 = north, 1 = northeast, 2 = north, ...",
+              minimum = 0,
+              maximum = 7
+            },
+            width = {
+              type = "number",
+              description = "Width of the entity"
+            },
+            height = {
+              type = "number",
+              description = "Height of the entity"
+            },
+            back_mover = {
+              type = "boolean",
+              description = "Is this carriage a back mover?"
+            },
+            operation = {
+              type = "string",
+              description = "Operation of combinators"
+            },
+            variant = {
+              type = "string",
+              description = "Variant of this entity. For example \"I\", \"R\" or \"L\" for belts."
+            }
+          },
+          required = { "name", "x", "y", "direction" }
+        }
+      },
+      wire_connections = {
+        type = "array",
+        items = {
+          type = "object",
+          properties = {
+            start = {
+              type = "object",
+              properties = {
+                ["x"] = {
+                  type = "number"
+                },
+                ["y"] = {
+                  type = "number"
+                },
+                ["z"] = {
+                  type = "number"
+                }
+              },
+              required = { "x", "y", "z" }
+            },
+            target = {
+              type = "object",
+              properties = {
+                ["x"] = {
+                  type = "number"
+                },
+                ["y"] = {
+                  type = "number"
+                },
+                ["z"] = {
+                  type = "number"
+                }
+              },
+              required = { "x", "y", "z" }
+            }
+          },
+          required = { "start", "target" }
+        }
+      },
+      train_paths = {
+        type = "array",
+        items = {
+          type = "object",
+          properties = {
+            carriages = {
+              type = "array",
+              items = {
+                type = "integer",
+                description = "Index in \"$.entities\" array"
+              }
+            },
+            path = {
+              type = "array",
+              items = {
+                type = "object",
+                properties = {
+                  index = {
+                    type = "integer",
+                    description = "Index in \"$.entities\" array"
+                  },
+                  invert_spline = {
+                    type = "boolean"
+                  }
+                },
+                required = { "index", "invert_spline" }
+              }
+            }
+          },
+          required = { "carriages", "path" }
+        }
+      },
+      belt_paths = {
+        type = "array",
+        items = {
+          type = "object",
+          properties = {
+            path = {
+              type = "array",
+              items = {
+                type = "integer",
+                description = "Index in \"$.entities\" array"
+              }
+            },
+            items_lane_r = {
+              type = "array",
+              items = {
+                type = "string"
+              },
+              description = "List of item names which can appear on right belt lane"
+            },
+            items_lane_l = {
+              type = "array",
+              items = {
+                type = "string"
+              },
+              description = "List of item names which can appear on left belt lane"
+            }
+          },
+          required = { "path" }
+        }
+      },
+      logistic_systems = {
+        type = "array",
+        items = {
+          type = "object",
+          properties = {
+            roboports = {
+              type = "array",
+              items = {
+                type = "integer",
+                description = "Index in \"$.entities\" array"
+              }
+            },
+            chests = {
+              type = "array",
+              items = {
+                type = "integer",
+                description = "Index in \"$.entities\" array"
+              }
+            }
+          },
+          required = { "roboports", "chests" }
+        }
+      }
+    },
+    required = { "bounds", "entities", "wire_connections", "train_paths", "belt_paths", "logistic_systems" }
+  }

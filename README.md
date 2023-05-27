@@ -4,6 +4,9 @@
 Factorio mod relevant for [FUE5](https://github.com/FUE5BASE/FUE5). Adds shortcut to the game which puts selection tool to your cursor. 
 
 ## Selection tool
+Get selection tool by clicking the new shortcut
+![shortcut](https://github.com/FUE5BASE/FUE5-Exporter/assets/7888949/2df15728-c925-488d-b78d-5ae61f9593df)
+
 Selection tool has two modes:
  1) Main mode (selecting with no modifier keys) exports selected buildings to JSON.
  2) Alt mode (selection with Shift key) is used for debugging. It doesn't export selected buildings to JSON but prints bunch of stuff useful for quick debugging.

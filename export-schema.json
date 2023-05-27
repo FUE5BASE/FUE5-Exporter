@@ -3,6 +3,29 @@
     "type": "object",
     "description": "Format of json exported from FUE5Exporter and imported in FUE5.",
     "properties": {
+        "bounds": {
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "x",
+                "y",
+                "width",
+                "height"
+            ]
+        },
         "entities": {
             "type": "array",
             "items": {
@@ -10,11 +33,7 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "Name of the entity, can differ from their name in Factorio"
-                    },
-                    "variant": {
-                        "type": "string",
-                        "description": "Variant of this entity. For example \"I\", \"R\" or \"L\" for belts."
+                        "description": "Name of the entity from Factorio"
                     },
                     "x": {
                         "type": "number",
@@ -32,15 +51,23 @@
                     },
                     "width": {
                         "type": "number",
-                        "description": "Used for placing entity placeholders in UE5, will be removed when all entities are supported"
+                        "description": "Width of the entity"
                     },
                     "height": {
                         "type": "number",
-                        "description": "Used for placing entity placeholders in UE5, will be removed when all entities are supported"
+                        "description": "Height of the entity"
+                    },
+                    "back_mover": {
+                        "type": "boolean",
+                        "description": "Is this carriage a back mover?"
                     },
                     "operation": {
                         "type": "string",
                         "description": "Operation of combinators"
+                    },
+                    "variant": {
+                        "type": "string",
+                        "description": "Variant of this entity. For example \"I\", \"R\" or \"L\" for belts."
                     }
                 },
                 "required": [
@@ -109,19 +136,8 @@
                     "carriages": {
                         "type": "array",
                         "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "back_mover": {
-                                    "type": "boolean"
-                                }
-                            },
-                            "required": [
-                                "name",
-                                "back_mover"
-                            ]
+                            "type": "integer",
+                            "description": "Index in \"$.entities\" array"
                         }
                     },
                     "path": {
@@ -162,19 +178,19 @@
                             "description": "Index in \"$.entities\" array"
                         }
                     },
-                    "items_lane_1": {
+                    "items_lane_r": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of item names which can appear on this belt lane"
+                        "description": "List of item names which can appear on right belt lane"
                     },
-                    "items_lane_2": {
+                    "items_lane_l": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of item names which can appear on this belt lane"
+                        "description": "List of item names which can appear on left belt lane"
                     }
                 },
                 "required": [
@@ -210,6 +226,7 @@
         }
     },
     "required": [
+        "bounds",
         "entities",
         "wire_connections",
         "train_paths",

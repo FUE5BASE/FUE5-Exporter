@@ -22,7 +22,7 @@ function inverted_previous(from_rail, to_rail, from_inverted)
 end
 
 function copy_previous(from_rail, to_rail, from_inverted)
-	return from_inverted
+	return not not from_inverted
 end
 
 local rail_transitions = {
@@ -53,8 +53,7 @@ local rail_transitions = {
 function get_first_rail_variant(exported_entities, path)
 	local from_rail = exported_entities[path[2].index + 1]
 	local to_rail = exported_entities[path[1].index + 1]
-	local variant = rail_transitions[from_rail.name .. '-' .. from_rail.variant][to_rail.name .. '-' .. to_rail.variant](
-	from_rail, to_rail, path[2].invert_spline)
+	local variant = rail_transitions[from_rail.name .. '-' .. from_rail.variant][to_rail.name .. '-' .. to_rail.variant](from_rail, to_rail, path[2].invert_spline)
 	if from_rail.name == 'straight-rail' and from_rail.variant == 'I' or to_rail.name == 'straight-rail' and to_rail.variant == 'I' then
 		return not variant
 	end
@@ -102,22 +101,15 @@ function get_train_paths(event, exported_entities, exported_entities_map, print)
 				local from_rail = exported_entities[path[i - 1].index + 1]
 				local to_rail = exported_entities[path[i].index + 1]
 
-				path[i].invert_spline = rail_transitions[from_rail.name .. '-' .. from_rail.variant]
-				[to_rail.name .. '-' .. to_rail.variant](from_rail, to_rail, path[i - 1].invert_spline)
+				path[i].invert_spline = rail_transitions[from_rail.name .. '-' .. from_rail.variant][to_rail.name .. '-' .. to_rail.variant](from_rail, to_rail, path[i - 1].invert_spline)
 			end
 			path[1].invert_spline = get_first_rail_variant(exported_entities, path)
 
-			local back_movers = {}
-			for _, locomotive in ipairs(train.locomotives.back_movers) do
-				back_movers[locomotive.unit_number] = true
-			end
-
 			local carriages = {}
 			for _, carriage in ipairs(train.carriages) do
-				table.insert(carriages, {
-					name = carriage.name,
-					back_mover = back_movers[carriage.unit_number] or false
-				})
+				if exported_entities_map[carriage.unit_number] then
+					table.insert(carriages, exported_entities_map[carriage.unit_number] - 1)
+				end
 			end
 
 			table.insert(train_paths, {

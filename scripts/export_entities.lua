@@ -79,6 +79,21 @@ function get_pipe_type(directions)
 	end
 end
 
+function is_carriage_back_mover(carriage)
+    local direction = defines.rail_direction
+    local train = carriage.train
+    local carriages = train.carriages
+    local carriage_in_front = carriage.get_connected_rolling_stock(direction.front)
+    if not carriage_in_front then
+        return carriage ~= train.front_stock
+    end
+    for index, train_carriage in ipairs(carriages) do
+        if carriage == train_carriage then
+            return carriages[index - 1] ~= carriage_in_front
+        end
+    end
+end
+
 function export_entities(event, print)
 	local exported_entities = {}
 	local exported_entities_map = {}
@@ -150,6 +165,10 @@ function export_entities(event, print)
 
 		if entity.type == 'tree' then
 			export.name = 'tree'
+		end
+
+		if entity.train then
+			export.back_mover = is_carriage_back_mover(entity)
 		end
 
 		print(entity.type .. ' ' .. export.name .. ' ' .. export.direction)

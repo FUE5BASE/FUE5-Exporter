@@ -58,7 +58,7 @@ function get_belt_paths(event, exported_entities, exported_entities_map, print)
         repeat
             start_belt = belt
             belt = backwards_graph[belt.unit_number]
-        until not belt or belt.unit_number == belt_segment[1].unit_number
+        until not belt or belt == belt_segment[1]
 
         belt = start_belt
         local belt_indexes = {}
@@ -73,7 +73,7 @@ function get_belt_paths(event, exported_entities, exported_entities_map, print)
                 belt_items_2[item] = true
             end
             belt = forward_graph[belt.unit_number]
-        until not belt or belt.unit_number == start_belt.unit_number
+        until not belt or belt == start_belt
 
         local items_1 = {}
         for item, _ in pairs(belt_items_1) do
@@ -87,8 +87,8 @@ function get_belt_paths(event, exported_entities, exported_entities_map, print)
 
         table.insert(belt_paths, {
             path = belt_indexes,
-            items_lane_1 = items_1,
-            items_lane_2 = items_2
+            items_lane_l = items_1,
+            items_lane_r = items_2,
         })
     end
 

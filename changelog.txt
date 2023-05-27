@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 2023-05-25
+  Info:
+    - Updated readme to mention how to get the selection tool
+    - Added "bounds" to the export to offload computation from FUE5
+    - Added some entities to export ignore list
+    - Modified export structure (FUE5 is updated to work with new structure)
+  Bugfixes:
+    - Fixed crash when exporting non vanilla power poles
+    - Fixed empty arrays being serialized to empty dictionaries
+    - Added missing translation for shortcut
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2023-05-11
+  Info:
+    - Initial release

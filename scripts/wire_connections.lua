@@ -35,7 +35,7 @@ function get_wire_connections(event)
 	for _, entity in ipairs(event.entities) do
 		if entity.type == 'electric-pole' then
 			for _, neighbour in ipairs(entity.neighbours['copper']) do
-				if exported_electic_poles[neighbour.unit_number] and visited_entities[neighbour.unit_number] == nil then
+				if exported_electic_poles[neighbour.unit_number] and visited_entities[neighbour.unit_number] == nil and pole_connection_offsets[entity.name] and pole_connection_offsets[neighbour.name] then
 					table.insert(connections, {
 						start = {
 							x = entity.position.x + pole_connection_offsets[entity.name].x - event.area.left_top.x,

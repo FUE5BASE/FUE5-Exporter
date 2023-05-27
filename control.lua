@@ -1,8 +1,11 @@
 local export_entities = require('scripts.export_entities').export_entities
+local get_bounds = require('scripts.bounds').get_bounds
 local get_wire_connections = require('scripts.wire_connections').get_wire_connections
 local get_train_paths = require('scripts.train_paths').get_train_paths
 local get_belt_paths = require('scripts.belt_paths').get_belt_paths
 local get_logistic_systems = require('scripts.logistic_systems').get_logistic_systems
+local serialize = require('scripts.serialize').serialize
+local export_schema = require('export_schema')
 
 function get_min_point(entities)
 	min_x = nil
@@ -29,6 +32,9 @@ function process(event, debug, print)
 		print('Exported entities')
 		local exported_entities, exported_entities_map = export_entities(event, print)
 
+		print('Bounds')
+		local bounds = get_bounds(exported_entities)
+
 		print('Wire connection')
 		local wire_connections = get_wire_connections(event)
 
@@ -43,8 +49,9 @@ function process(event, debug, print)
 
 		if not debug then
 			game.write_file('exported-entities.json',
-				game.table_to_json({
+				serialize(export_schema, {
 					entities = exported_entities,
+					bounds = bounds,
 					wire_connections = wire_connections,
 					train_paths = train_paths,
 					belt_paths = belt_paths,
