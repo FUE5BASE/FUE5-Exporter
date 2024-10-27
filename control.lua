@@ -35,8 +35,9 @@ function process(event, debug, print)
 		print('Bounds')
 		local bounds = get_bounds(exported_entities)
 
-		print('Wire connection')
-		local wire_connections = get_wire_connections(event)
+		-- print('Wire connection')
+		-- local wire_connections = get_wire_connections(event)
+		-- Removed wire connections for now, as it causes problems, that I have no idea how to fix lol
 
 		print('Train paths')
 		local train_paths = get_train_paths(event, exported_entities, exported_entities_map, print)
