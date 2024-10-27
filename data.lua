@@ -23,14 +23,16 @@ data:extend(
         
         -- New properties introduced in Factorio 2.0
         select = {
-            selection_color = { r = 0, g = 0, b = 1 },
-            selection_cursor_box_type = "entity",
+            border_color = { r = 0, g = 0, b = 1 },
+            mode = "any-entity",
+            cursor_box_type = "entity",
             entity_filter_mode = "blacklist",
             entity_type_filters = { "character", "resource", "spider-leg" }
         },
         alt_select = {
-            selection_color = { r = 1, g = 0, b = 0 },
-            selection_cursor_box_type = "entity",
+            border_color = { r = 1, g = 0, b = 0 },
+            mode = "any-entity",
+            cursor_box_type = "entity",
             entity_filter_mode = "blacklist",
             entity_type_filters = { "character", "resource", "spider-leg" }
         },
