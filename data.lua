@@ -5,7 +5,9 @@ data:extend(
 		name = "FUE5Exporter__export-entities",
 		action = "lua",
 		icon = "__base__/graphics/icons/signal/signal_E.png",
-		icon_size = 64
+		icon_size = 64,
+		small_icon = "__base__/graphics/icons/signal/signal_E.png",
+		small_icon_size = 64
 	},
     {
         type = "selection-tool",
