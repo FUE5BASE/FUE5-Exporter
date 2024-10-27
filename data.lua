@@ -4,12 +4,8 @@ data:extend(
 		type = "shortcut",
 		name = "FUE5Exporter__export-entities",
 		action = "lua",
-		icon = {
-		filename = "__base__/graphics/icons/signal/signal_E.png",
-		size = 64,
-			scale = 1,
-			flags = { "icon" }
-		}
+		icon = "__base__/graphics/icons/signal/signal_E.png",
+		icon_size = 64
 	},
     {
         type = "selection-tool",
