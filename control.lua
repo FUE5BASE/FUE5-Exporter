@@ -35,8 +35,9 @@ function process(event, debug, print)
 		print('Bounds')
 		local bounds = get_bounds(exported_entities)
 
-		print('Wire connection')
-		local wire_connections = get_wire_connections(event)
+		-- print('Wire connection')
+		-- local wire_connections = get_wire_connections(event)
+		-- Removed wire connections for now, as it causes problems, that I have no idea how to fix lol
 
 		print('Train paths')
 		local train_paths = get_train_paths(event, exported_entities, exported_entities_map, print)
@@ -48,7 +49,7 @@ function process(event, debug, print)
 		local logistic_systems = get_logistic_systems(event, exported_entities, exported_entities_map, print)
 
 		if not debug then
-			game.write_file('exported-entities.json',
+			helpers.write_file('exported-entities.json',
 				serialize(export_schema, {
 					entities = exported_entities,
 					bounds = bounds,

@@ -5,7 +5,7 @@
   "author": "Atria",
   "contact": "tomas.chmelik2@gmail.com",
   "homepage": "https://github.com/FUE5BASE/FUE5Exporter",
-  "factorio_version": "1.1",
-  "dependencies": ["base >= 1.1"],
+  "factorio_version": "2.0",
+  "dependencies": ["base >= 2.0.11"],
   "description": "Adds selection tool for exporting bases to json readable by FUE5"
 }
